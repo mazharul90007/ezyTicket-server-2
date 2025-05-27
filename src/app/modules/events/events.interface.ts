@@ -20,4 +20,5 @@ export type TEvent = {
   category: string;
   createdAt: Date;
   isDeleted?: boolean;
+  advertise: boolean;
 };

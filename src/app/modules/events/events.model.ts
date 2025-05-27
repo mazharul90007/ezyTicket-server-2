@@ -116,8 +116,12 @@ const eventSchema = new Schema<TEvent>({
     type: Boolean,
     default: false,
   },
+  advertise: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // eventSchema.index({ eventDate: 1, eventType: 1, status: 1 });
 
-export const Event = model<TEvent>('Event', eventSchema);
+export const Event = model<TEvent>('events', eventSchema);
