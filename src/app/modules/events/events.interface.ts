@@ -1,0 +1,23 @@
+export type TEvent = {
+  title: string;
+  eventType: string;
+  eventCategory: string;
+  eventDate: string;
+  eventTime: string;
+  duration: string;
+  location: string;
+  details: string;
+  organizer: string;
+  image: string | null;
+  totalTickets: number;
+  soldTickets: number;
+  maxTickets: number;
+  price: number;
+  managerName: string | null;
+  managerEmail: string;
+  managerImage: string | null;
+  status: 'pending' | 'verified' | 'rejected';
+  category: string;
+  createdAt: Date;
+  isDeleted?: boolean;
+};

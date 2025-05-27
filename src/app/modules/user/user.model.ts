@@ -1,30 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { TUser, TUserName, UserStaticMethod } from './user.interface';
+import { TUser, UserStaticMethod } from './user.interface';
 import validator from 'validator';
-
-const userNameSchema = new Schema<TUserName>({
-  firstName: {
-    type: String,
-    required: [true, 'First name is required'],
-    trim: true,
-    maxlength: [20, 'First name cannot be more than 20 characters'],
-    validate: {
-      validator: (value: string) => validator.isAlpha(value),
-      message: '{VALUE} is not valid',
-    },
-    default: 'firstName',
-  },
-  middleName: {
-    type: String,
-    trim: true,
-  },
-  lastName: {
-    type: String,
-    required: [true, 'Last name is required'],
-    trim: true,
-    maxlength: [20, 'Last name cannot be more than 20 characters'],
-  },
-});
 
 const userSchema = new Schema<TUser, UserStaticMethod>(
   {
@@ -34,7 +10,7 @@ const userSchema = new Schema<TUser, UserStaticMethod>(
       unique: true,
     },
     name: {
-      type: userNameSchema,
+      type: String,
       required: [true, 'Name is required'],
     },
     email: {
@@ -98,11 +74,6 @@ const userSchema = new Schema<TUser, UserStaticMethod>(
     },
   },
 );
-
-//virtual Full Name
-userSchema.virtual('fullName').get(function () {
-  return `${this.name.firstName} ${this.name.middleName} ${this.name.lastName}`;
-});
 
 //Query Middlwware
 userSchema.pre('find', function (next) {

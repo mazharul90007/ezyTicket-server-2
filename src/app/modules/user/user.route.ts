@@ -7,5 +7,6 @@ router.get('/', UserControllers.getAllUsers);
 router.get('/:email', UserControllers.getSingleUser);
 router.patch('/role/:id', UserControllers.updateUserRole);
 router.delete('/:id', UserControllers.deleteUser);
+router.patch('/:email', UserControllers.updateUserProfile);
 
 export const UserRoutes = router;

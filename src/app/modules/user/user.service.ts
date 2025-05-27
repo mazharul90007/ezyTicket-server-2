@@ -39,10 +39,19 @@ const deleteUserFromDB = async (id: string) => {
   return result;
 };
 
+const updateUserProfileInDB = async (
+  email: string,
+  updateData: Pick<TUser, 'name' | 'phone' | 'address'>,
+) => {
+  const result = await User.updateOne({ email: email }, { $set: updateData });
+  return result;
+};
+
 export const UserService = {
   createUserInDB,
   getAllUserFromDB,
   getSingleUserFromDB,
   updateUserRoleInDB,
   deleteUserFromDB,
+  updateUserProfileInDB,
 };

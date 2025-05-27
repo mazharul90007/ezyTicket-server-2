@@ -101,10 +101,31 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
+const updateUserProfile = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.params;
+    const updateData = req.body;
+    const result = await UserService.updateUserProfileInDB(email, updateData);
+
+    res.status(200).json({
+      success: true,
+      message: 'User Profile has been updated successfully',
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'User Profile update failed',
+      error: error.message,
+    });
+  }
+};
+
 export const UserControllers = {
   createUser,
   getAllUsers,
   getSingleUser,
   updateUserRole,
   deleteUser,
+  updateUserProfile,
 };
