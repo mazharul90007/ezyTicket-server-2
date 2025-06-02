@@ -33,7 +33,7 @@ app.use('/api/v1/events', EventsRoutes);
 
 // Health check
 app.get('/', (req: Request, res: Response) => {
-  const a = 10;
+  const a = 100;
   res.send(a);
 });
 
